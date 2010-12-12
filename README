@@ -1,0 +1,27 @@
+Provides a simple, unofficial, Java client API for using Google Translate.
+
+Features:
+=========
+
+Small library size - less than 50Kb.
+
+Uses English as an intermediate language to attempt translations between language pairings that are unsupported directly by Google Translate.
+
+The jar is runnable and has a very lightweight GUI to demonstrate translation functionality.
+
+Quickstart:
+===========
+
+import com.google.api.translate.Language;
+import com.google.api.translate.Translate;
+
+public class Main {
+  public static void main(String[] args) throws Exception {
+    // Set the HTTP referrer to your website address.
+    Translate.setHttpReferrer(/* Enter the URL of your site here */);
+
+    String translatedText = Translate.execute("Bonjour le monde", Language.FRENCH, Language.ENGLISH);
+
+    System.out.println(translatedText);
+  }
+}

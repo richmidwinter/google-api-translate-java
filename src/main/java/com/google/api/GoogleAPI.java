@@ -40,11 +40,11 @@ public abstract class GoogleAPI {
 	protected static final String ENCODING = "UTF-8";
     
     /**
-     * The HTTP referrer attribute.
+     * The HTTP referrer and API key attribute.
      * 
-     * This allows Google to distinguish between programs.
+     * These allow Google to distinguish between programs.
      */
-    protected static String referrer;
+    protected static String referrer, key;
     
     /**
      * Sets the HTTP Referrer.
@@ -52,6 +52,14 @@ public abstract class GoogleAPI {
      */
     public static void setHttpReferrer(final String pReferrer) {
     	referrer = pReferrer;
+    }
+    
+    /**
+     * Sets the API key.
+     * @param pKey The API key.
+     */
+    public static void setKey(final String pKey) {
+    	key = pKey;
     }
     
     public static void validateReferrer() throws Exception {

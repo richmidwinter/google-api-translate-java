@@ -48,7 +48,7 @@ public final class Translate extends GoogleAPI {
     		TEXT_PARAM = "&q=",
     		PIPE_PARAM = "%7C",
     		URL = "http://ajax.googleapis.com/ajax/services/language/translate",
-    		PARAMETERS = "v=1.0&langpair=#FROM#%7C#TO#&q=";
+    		PARAMETERS = "v=2.0&langpair=#FROM#%7C#TO#&q=";
 
     /**
      * Translates text from a given Language to another given Language using Google Translate.
@@ -64,7 +64,7 @@ public final class Translate extends GoogleAPI {
     	
     	final URL url = new URL(URL);
     	final String parameters = PARAMETERS.replaceAll("#FROM#", from.toString()).replaceAll("#TO#", to.toString())
-    			+URLEncoder.encode(text, ENCODING);
+    			+URLEncoder.encode(text, ENCODING) +(key != null ? "&key=" +key : "");
     	
     	final JSONObject json = retrieveJSON(url, parameters);
     	
@@ -142,7 +142,7 @@ public final class Translate extends GoogleAPI {
     	
     	final StringBuilder parametersBuilder = new StringBuilder();
     	
-    	parametersBuilder.append(PARAMETERS.replaceAll("#FROM#", from[0].toString()).replaceAll("#TO#", to[0].toString()));
+    	parametersBuilder.append(PARAMETERS.replaceAll("#FROM#", from[0].toString()).replaceAll("#TO#", to[0].toString())  +(key != null ? "&key=" +key : ""));
     	parametersBuilder.append(URLEncoder.encode(text[0], ENCODING));
     	
     	for (int i = 1; i<text.length; i++) {

@@ -68,12 +68,12 @@ public class TranslateTest extends TestCase {
 		assertEquals("Hello dinja", Translate.execute("Hello world", Language.ENGLISH, Language.MALTESE));
 		assertEquals("สวัสดีชาวโลก", Translate.execute("Hello world", Language.ENGLISH, Language.THAI));
 		assertEquals("Merhaba dünya", Translate.execute("Hello world", Language.ENGLISH, Language.TURKISH));
-		assertEquals("-U-A-Π-≤ μ-C-- °-Π-Ä", Translate.execute("–ü—Ä–∏–≤–µ—Ç –º–∏—Ä", Language.RUSSIAN, Language.SPANISH));
+		assertEquals("¡Hola, mundo", Translate.execute("Привет мир", Language.RUSSIAN, Language.SPANISH));
 		assertEquals("Ciao a tutti", Translate.execute("Hallo welt", Language.GERMAN, Language.ITALIAN));
 		assertEquals("Ok", Translate.execute("Ok", Language.ENGLISH, Language.FRENCH));
 		assertEquals("Iawn", Translate.execute("Ok", Language.ENGLISH, Language.WELSH));
 		
-		assertEquals("Bonjour tout le monde", Translate.execute("مرحبا العالم", Language.AUTO_DETECT, Language.FRENCH));
+		assertEquals("Bonjour tout le monde", Translate.execute("Hallo welt", Language.AUTO_DETECT, Language.FRENCH));
 	}
 	
 	@Test
@@ -205,12 +205,12 @@ public class TranslateTest extends TestCase {
 		
 		Translate.execute("Figures from the Office for National Statistics (ONS) show that between December and April, "
 				+ "the five-month period typically regarded as peak bonus season, those working in the financial "
-				+ "intermediation sector received bonuses worth ¬£7.6bn. The figure is more than 40pc lower than last"
-				+ "year's total of ¬£13.2bn, but the fact that it came during a period where the banking system owed its"
+				+ "intermediation sector received bonuses worth ¬¨¬£7.6bn. The figure is more than 40pc lower than last"
+				+ "year's total of ¬¨¬£13.2bn, but the fact that it came during a period where the banking system owed its"
 				+ "survival to the rescue support of taxpayers\' money will spark further outrage. Related Articles USS"
-				+ "pays bonuses despite fund fall Ex-HBOS chief Hornby gives up ¬£1m redundancyBankers blind to bonus "
+				+ "pays bonuses despite fund fall Ex-HBOS chief Hornby gives up ¬¨¬£1m redundancyBankers blind to bonus "
 				+ "'furore' Barclays and Lloyds to dish out millions in bonuses. City bonuses defy credit crunch and "
-				+ "hit new record of ¬£13bn. We are still mad with the banks but we are no closer to getting even. News"
+				+ "hit new record of ¬¨¬£13bn. We are still mad with the banks but we are no closer to getting even. News"
 				+ "of the huge sums being offered by Barclays to five traders at JP Morgan will also stoke the row. "
 				+ "Barclays is close to poaching Todd Edgar, 37, a star commodity trader at JP Morgan, and his four "
 				+ "team members to head up the foreign exchange trading desk. Mr Edgar is responsible for a $2bn book "
@@ -225,9 +225,9 @@ public class TranslateTest extends TestCase {
 				+ "contravene any of the Financial Service Authority's guidelines. At JP Morgan, Mr Edgar was largely a"
 				+ "proprietary trader, gambling with the bank's own money. At Barclays, although he will take "
 				+ "proprietary positions, his main role will be client business. Mr Edgar's appointment would follow "
-				+ "public outrage last week over a ¬£7m \"market leading\" deal agreed by Royal Bank of Scotland, 70pc "
+				+ "public outrage last week over a ¬¨¬£7m \"market leading\" deal agreed by Royal Bank of Scotland, 70pc "
 				+ "owned by the taxpayer, for a Merrill Lynch banker, Antonio Polverino. Although Barclays has not "
-				+ "taken any cash directly from the state, critics say it is the beneficiary of ¬£1.2 trillion of "
+				+ "taken any cash directly from the state, critics say it is the beneficiary of ¬¨¬£1.2 trillion of "
 				+ "taxpayer support for the financial system as a whole. Senior Treasury officials believe that the "
 				+ "bank would have collapsed were it not for their assistance. In an interview this weekend, the Shadow"
 				+ "Chancellor, George Osborne said it was \"totally unacceptable\" that the major banks are paying "
@@ -236,7 +236,7 @@ public class TranslateTest extends TestCase {
 				+ "those guarantees are in place is not so the bankers can pay themselves large bonuses. \"The scale of"
 				+ "this year's bonus payments, as revealed by the ONS statistics, would be enough to finance an almost "
 				+ "2p reduction in the basic rate of income tax. The payments came after the unprecedented bail-out of "
-				+ "British banks, which cost the taxpayer some ¬£35bn in capital infusions. Lord Oakeshott, Liberal "
+				+ "British banks, which cost the taxpayer some ¬¨¬£35bn in capital infusions. Lord Oakeshott, Liberal "
 				+ "Democrat Treasury spokesman, said: \"These figures suggest that the bankers are taking most of the "
 				+ "profits and the taxpayer is taking most of the risk. \"The official confirmation of the scale of "
 				+ "City bonuses in the past year underlines the fact that even against the backdrop of the worst "

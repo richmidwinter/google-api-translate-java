@@ -114,18 +114,23 @@ public abstract class GoogleAPI {
 
 			final PrintWriter pw = new PrintWriter(uc.getOutputStream());
 			pw.write(parameters);
-			pw.flush();
+			pw.close();
+			uc.getOutputStream().close();
     		
     		try {
     			final String result = inputStreamToString(uc.getInputStream());
     			
     			return new JSONObject(result);
     		} finally { // http://java.sun.com/j2se/1.5.0/docs/guide/net/http-keepalive.html
-    			uc.getInputStream().close();
+    			if (uc.getInputStream() != null) {
+    				uc.getInputStream().close();
+    			}
     			if (uc.getErrorStream() != null) {
     				uc.getErrorStream().close();
     			}
-    			pw.close();
+    			if (pw != null) {
+    				pw.close();
+    			}
     		}
     	} catch (Exception ex) {
     		throw new Exception("[google-api-translate-java] Error retrieving translation.", ex);

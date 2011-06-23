@@ -136,7 +136,7 @@ public enum Language {
 	
 	public static Language fromString(final String pLanguage) {
 		for (Language l : values()) {
-			if (pLanguage.equals(l.toString())) {
+			if (l.toString().equals(pLanguage)) {
 				return l;
 			}
 		}

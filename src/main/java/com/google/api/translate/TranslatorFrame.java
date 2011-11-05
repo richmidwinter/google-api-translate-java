@@ -37,10 +37,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JRadioButtonMenuItem;
 
 import com.google.api.Files;
+import com.google.api.GoogleAPI;
 
 /**
- *
- * @author rich.midwinter
+ * @author Richard Midwinter
  */
 public class TranslatorFrame extends javax.swing.JFrame {
     
@@ -49,7 +49,11 @@ public class TranslatorFrame extends javax.swing.JFrame {
 	 */
 	private static final long serialVersionUID = 7916697355146649532L;
 	
-	private static final String REFERRER_PATH = System.getProperty("user.home") +"/.gtReferrer";
+	private static final String
+			REFERRER_PATH = System.getProperty("user.home") + System.getProperty("file.separator") +".gtReferrer",
+			API_KEY_PATH = System.getProperty("user.home") + System.getProperty("file.separator") + ".google-translate-api.key";
+	
+	private Translate translate;
 	
 	private Language languageFrom = Language.FRENCH;
 	private Language languageTo = Language.ENGLISH;
@@ -58,6 +62,13 @@ public class TranslatorFrame extends javax.swing.JFrame {
     public TranslatorFrame() throws IOException {
         initComponents();
         setLocationRelativeTo(null);
+        
+        translate = Translate.DEFAULT;
+        
+        final File key = new File(API_KEY_PATH);
+        if (key.exists()) {
+        	GoogleAPI.setKey(Files.read(key));
+        }
         
         String referrer = null;
         
@@ -72,7 +83,7 @@ public class TranslatorFrame extends javax.swing.JFrame {
         }
         
         if (referrer.length() > 0) {
-        	Translate.setHttpReferrer(referrer);
+        	GoogleAPI.setHttpReferrer(referrer);
         } else {
         	System.exit(1);
         }
@@ -80,7 +91,7 @@ public class TranslatorFrame extends javax.swing.JFrame {
     
     private void translate() {
         try {
-            toTextArea.setText(Translate.translate(fromTextArea.getText().trim(), languageFrom, languageTo));
+            toTextArea.setText(translate.execute(fromTextArea.getText().trim(), languageFrom, languageTo));
         } catch (Exception ex) {
             Logger.getLogger(TranslatorFrame.class.getName()).log(Level.SEVERE, null, ex);
         }

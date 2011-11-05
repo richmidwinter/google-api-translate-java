@@ -36,9 +36,12 @@ import org.json.JSONObject;
  * @author Kramar Tomas
  */
 public abstract class GoogleAPI {
-
+	
+	/**
+	 * Default encoding to use.
+	 */
 	protected static final String ENCODING = "UTF-8";
-    
+	
     /**
      * The HTTP referrer and API key attribute.
      * 

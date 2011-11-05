@@ -3,16 +3,40 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.google.api</groupId>
 	<artifactId>google-api-translate-java</artifactId>
-	<version>0.95-SNAPSHOT</version>
+	<version>0.96-SNAPSHOT</version>
 	<name>google-api-translate-java</name>
 	<description>A Java wrapper for the Google Translate service</description>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<distributionManagement>
+		<repository>
+			<id>repo</id>
+			<url>https://github.com/richmidwinter/maven/raw/master/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshot-repo</id>
+			<url>https://github.com/richmidwinter/maven/raw/master/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20090211</version>
 		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
+
 	<build>
 		<plugins>
 			<plugin>
@@ -20,8 +44,8 @@
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>2.3.2</version>
 				<configuration>
-					<source>1.5</source>
-					<target>1.5</target>
+					<source>1.6</source>
+					<target>1.6</target>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -36,6 +60,28 @@
 						</manifest>
 					</archive>
 				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>com.google.api.translate.TranslatorFrame</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+				<executions>
+					<execution>
+						<id>make-assembly</id>
+						<phase>package</phase>
+						<goals>
+							<goal>assembly</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

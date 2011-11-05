@@ -24,20 +24,30 @@ import junit.framework.TestCase;
 
 import org.junit.Test;
 
+import com.google.api.GoogleAPI;
+
 /**
  * @author Richard Midwinter
  *
  */
 public class LoopTest extends TestCase {
+	
+	private Translate translate;
+	
+	@Override
+	protected void setUp() throws Exception {
+		translate = Translate.DEFAULT;
+	}
+
 	@Test
 	public void testTranslate() throws Exception {
 		System.out.println("testTranslate");
 		
-		Translate.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
 		
 		for (int i = 0; i<30; i++) {
 			System.out.println("Loop: " +i);
-			assertEquals("مرحبا العالم", Translate.execute("Hello world", Language.ENGLISH, Language.ARABIC));
+			assertEquals("مرحبا العالم", translate.execute("Hello world", Language.ENGLISH, Language.ARABIC));
 		}
 	}
 }

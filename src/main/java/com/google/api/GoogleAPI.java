@@ -114,7 +114,8 @@ public abstract class GoogleAPI {
     		uc.setRequestProperty("referer", referrer);
     		uc.setRequestMethod("POST");
     		uc.setDoOutput(true);
-
+            uc.setRequestProperty("X-HTTP-Method-Override", "GET");
+            
 			final PrintWriter pw = new PrintWriter(uc.getOutputStream());
 			pw.write(parameters);
 			pw.close();

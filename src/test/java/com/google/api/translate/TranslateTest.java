@@ -38,9 +38,8 @@ public class TranslateTest extends TestCase {
 	
 	@Override
 	public void setUp() throws Exception {
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
-		
-		GoogleAPI.setKey(Files.read(new File(System.getProperty("user.home") + "/.google-translate-api.key")).trim());
+        GoogleAPI.setHttpReferrer(Files.read(new File(System.getProperty("user.home") + "/.google-translate-api-referrer.txt")).trim());
+        GoogleAPI.setKey(Files.read(new File(System.getProperty("user.home") + "/.google-translate-api.key")).trim());
 		
 		translate = Translate.DEFAULT;
 	}
@@ -63,33 +62,33 @@ public class TranslateTest extends TestCase {
 	public void testTranslate() throws Exception {
 		System.out.println("testTranslate");
 		
-		assertEquals("مرحبا العالم", translate.execute("Hello world", Language.ENGLISH, Language.ARABIC));
-		assertEquals("您好世界", translate.execute("Hello world", Language.ENGLISH, Language.CHINESE));
-		assertEquals("Bonjour tout le monde", translate.execute("Hello world", Language.ENGLISH, Language.FRENCH));
+		assertEquals("مرحبا بالعالم", translate.execute("Hello world", Language.ENGLISH, Language.ARABIC));
+		assertEquals("你好世界", translate.execute("Hello world", Language.ENGLISH, Language.CHINESE));
+		assertEquals("Bonjour le monde", translate.execute("Hello world", Language.ENGLISH, Language.FRENCH));
 		assertEquals("Hallo Welt", translate.execute("Hello world", Language.ENGLISH, Language.GERMAN));
-		assertEquals("हेलो विश्व", translate.execute("Hello world", Language.ENGLISH, Language.HINDI));
+		assertEquals("हैलो वर्ल्ड", translate.execute("Hello world", Language.ENGLISH, Language.HINDI));
 		assertEquals("Ciao mondo", translate.execute("Hello world", Language.ENGLISH, Language.ITALIAN));
-		assertEquals("こんにちは、世界", translate.execute("Hello world", Language.ENGLISH, Language.JAPANESE));
-		assertEquals("안녕하세요", translate.execute("Hello world", Language.ENGLISH, Language.KOREAN));
-		assertEquals("Olá, mundo", translate.execute("Hello world", Language.ENGLISH, Language.PORTUGUESE));
+		assertEquals("こんにちは世界", translate.execute("Hello world", Language.ENGLISH, Language.JAPANESE));
+		assertEquals("안녕하세요 세계", translate.execute("Hello world", Language.ENGLISH, Language.KOREAN));
+		assertEquals("Olá Mundo", translate.execute("Hello world", Language.ENGLISH, Language.PORTUGUESE));
 		assertEquals("Привет мир", translate.execute("Hello world", Language.ENGLISH, Language.RUSSIAN));
-		assertEquals("¡Hola, mundo", translate.execute("Hello world", Language.ENGLISH, Language.SPANISH));
+		assertEquals("Hola Mundo", translate.execute("Hello world", Language.ENGLISH, Language.SPANISH));
 		assertEquals("Hello dinja", translate.execute("Hello world", Language.ENGLISH, Language.MALTESE));
 		assertEquals("สวัสดีชาวโลก", translate.execute("Hello world", Language.ENGLISH, Language.THAI));
-		assertEquals("Merhaba dünya", translate.execute("Hello world", Language.ENGLISH, Language.TURKISH));
-		assertEquals("¡Hola, mundo", translate.execute("Привет мир", Language.RUSSIAN, Language.SPANISH));
-		assertEquals("Ciao mondo", translate.execute("Hallo welt", Language.GERMAN, Language.ITALIAN));
-		assertEquals("Ok", translate.execute("Ok", Language.ENGLISH, Language.FRENCH));
+		assertEquals("Selam Dünya", translate.execute("Hello world", Language.ENGLISH, Language.TURKISH));
+		assertEquals("Hola Mundo", translate.execute("Привет мир", Language.RUSSIAN, Language.SPANISH));
+		assertEquals("Ciao Mondo", translate.execute("Hallo welt", Language.GERMAN, Language.ITALIAN));
+		assertEquals("D'Accord", translate.execute("Ok", Language.ENGLISH, Language.FRENCH));
 		assertEquals("Iawn", translate.execute("Ok", Language.ENGLISH, Language.WELSH));
 		
-		assertEquals("Bonjour tout le monde", translate.execute("Hallo welt", Language.AUTO_DETECT, Language.FRENCH));
+		assertEquals("Bonjour Le Monde", translate.execute("Hallo welt", Language.AUTO_DETECT, Language.FRENCH));
 	}
 	
 	@Test
 	public void testUnHtmlEntities() throws Exception {
 		System.out.println("testUnHtmlEntities");
 		
-		assertEquals("תעודת זהות", translate.execute("ID", Language.ENGLISH, Language.HEBREW));
+		assertEquals("זיהוי", translate.execute("ID", Language.ENGLISH, Language.HEBREW));
 	}
 	
 	@Test
@@ -101,7 +100,7 @@ public class TranslateTest extends TestCase {
 			"See you soon"
 		}, Language.ENGLISH, Language.FRENCH);
 		
-		assertEquals("Bonjour tout le monde", results[0]);
+		assertEquals("Bonjour le monde", results[0]);
 		assertEquals("À bientôt", results[1]);
 	}
 	
@@ -162,9 +161,9 @@ public class TranslateTest extends TestCase {
 			Language.YIDDISH
 		});
 
-		assertEquals("Ola, mundo", results[16]);
+		assertEquals("Ola Mundo", results[16]);
 		assertEquals("Ciao mondo", results[24]);
-		assertEquals("Habari dunia", results[42]);
+		assertEquals("Wapendwa dunia", results[42]);
 	}
 	
 	@Test
@@ -179,7 +178,7 @@ public class TranslateTest extends TestCase {
 			Language.FRENCH
 		});
 		
-		assertEquals("Bonjour tout le monde", results[0]);
+		assertEquals("Bonjour le monde", results[0]);
 	}
 	
 	@Test
@@ -197,7 +196,7 @@ public class TranslateTest extends TestCase {
 			Language.SPANISH
 		});
 		
-		assertEquals("Bonjour tout le monde", results[0]);
+		assertEquals("Bonjour le monde", results[0]);
 	}
 	
 	@Test

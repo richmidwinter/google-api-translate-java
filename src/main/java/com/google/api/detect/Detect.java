@@ -23,6 +23,7 @@ package com.google.api.detect;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.google.api.GoogleAPI;
@@ -39,7 +40,7 @@ public class Detect extends GoogleAPI {
 	/**
 	 * Constants.
 	 */
-	private static String URL = "http://ajax.googleapis.com/ajax/services/language/detect?v=1.0&q=";
+	private static String URL = "https://www.googleapis.com/language/translate/v2/detect?key=" + GoogleAPI.key + "&q=";
 
 	/**
 	 * Detects the language of a supplied String.
@@ -54,10 +55,11 @@ public class Detect extends GoogleAPI {
 		final URL url = new URL(URL +URLEncoder.encode(text, ENCODING));
 		
 		final JSONObject json = retrieveJSON(url);
-		
-		return new DetectResult(
-				Language.fromString(json.getJSONObject("responseData").getString("language")),
-				json.getJSONObject("responseData").getBoolean("isReliable"),
-				json.getJSONObject("responseData").getDouble("confidence"));
+
+        JSONObject results = (JSONObject) ((JSONArray) json.getJSONObject("data").getJSONArray("detections").get(0)).get(0);
+        return new DetectResult(
+				Language.fromString(results.getString("language")),
+                results.getBoolean("isReliable"),
+                results.getDouble("confidence"));
 	}
 }

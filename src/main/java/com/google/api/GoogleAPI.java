@@ -84,6 +84,8 @@ public abstract class GoogleAPI {
     		uc.setRequestProperty("referer", referrer);
     		uc.setRequestMethod("GET");
     		uc.setDoOutput(true);
+
+
     		
     		try {
     			final String result = inputStreamToString(uc.getInputStream());

@@ -20,6 +20,7 @@
  */
 package com.google.api.detect;
 
+import com.google.api.Files;
 import junit.framework.TestCase;
 
 import org.junit.Test;
@@ -29,6 +30,8 @@ import com.google.api.detect.Detect;
 import com.google.api.detect.DetectResult;
 import com.google.api.translate.Language;
 
+import java.io.File;
+
 /**
  * @author Richard Midwinter
  */
@@ -36,8 +39,9 @@ public class DetectTest extends TestCase {
 	@Test
 	public void testDetect() throws Exception {
 		System.out.println("testDetect");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+
+        GoogleAPI.setHttpReferrer(Files.read(new File(System.getProperty("user.home") + "/.google-translate-api-referrer.txt")).trim());
+        GoogleAPI.setKey(Files.read(new File(System.getProperty("user.home") + "/.google-translate-api.key")).trim());
 		
 		DetectResult detectResult = Detect.execute("Hello world");
 		

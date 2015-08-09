@@ -20,11 +20,14 @@
  */
 package com.google.api.translate;
 
+import com.google.api.Files;
 import junit.framework.TestCase;
 
 import org.junit.Test;
 
 import com.google.api.GoogleAPI;
+
+import java.io.File;
 
 /**
  * @author Richard Midwinter
@@ -42,12 +45,13 @@ public class LoopTest extends TestCase {
 	@Test
 	public void testTranslate() throws Exception {
 		System.out.println("testTranslate");
-		
-		GoogleAPI.setHttpReferrer("http://code.google.com/p/google-api-translate-java/");
+
+        GoogleAPI.setHttpReferrer(Files.read(new File(System.getProperty("user.home") + "/.google-translate-api-referrer.txt")).trim());
+        GoogleAPI.setKey(Files.read(new File(System.getProperty("user.home") + "/.google-translate-api.key")).trim());
 		
 		for (int i = 0; i<30; i++) {
 			System.out.println("Loop: " +i);
-			assertEquals("مرحبا العالم", translate.execute("Hello world", Language.ENGLISH, Language.ARABIC));
+			assertEquals("مرحبا بالعالم", translate.execute("Hello world", Language.ENGLISH, Language.ARABIC));
 		}
 	}
 }
